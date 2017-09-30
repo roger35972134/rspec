@@ -1,21 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "posts/edit", type: :view do
+  
   before(:each) do
-    @post = assign(:post, Post.create!(
-      :title => "MyString",
-      :content => "MyText"
-    ))
+    @post = Post.create(:title => "Big Title", :content => "content")
   end
 
-  it "renders the edit post form" do
+  it "render partial" do
     render
+    expect(response).to render_template(partial: "posts/_form")
+  end
 
-    assert_select "form[action=?][method=?]", post_path(@post), "post" do
-
-      assert_select "input#post_title[name=?]", "post[title]"
-
-      assert_select "textarea#post_content[name=?]", "post[content]"
-    end
+  it "has link" do 
+    render
+    expect(rendered).to include("Show")
+    expect(rendered).to include("Back")
   end
 end

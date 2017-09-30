@@ -5,6 +5,11 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    #render :json => @posts
+  end
+
+  def last_post
+    @post = Post.last
   end
 
   # GET /posts/1

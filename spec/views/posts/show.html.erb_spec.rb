@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe "posts/show", type: :view do
-  before(:each) do
-    @post = assign(:post, Post.create!(
-      :title => "Title",
-      :content => "MyText"
-    ))
+
+  it "render 'No Content' when @post has no content" do
+    @post = Post.create(:title => "Big Title", :content => nil)
+    render
+    expect(rendered).to include("No Content")
   end
 
-  it "renders attributes in <p>" do
+  it "render content when @post has content" do
+    allow(view).to receive(:render_content).and_return("Stub Content")
+    @post = Post.create(:title => "Big Title", :content => "I love rails")
     render
-    expect(rendered).to match(/Title/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).not_to include("No Content")
+    expect(rendered).not_to include("I love rails")
+    expect(rendered).to include("Stub Content")
   end
+
 end
