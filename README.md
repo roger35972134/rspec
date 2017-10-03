@@ -13,3 +13,4 @@ factory_girl - https://github.com/thoughtbot/factory_girl
 
 
 Better Rspecs website - http://www.betterspecs.org/
+Why I don't like factory girl - http://blog.steveklabnik.com/posts/2012-07-14-why-i-don-t-like-factory_girl
