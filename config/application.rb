@@ -24,6 +24,8 @@ module RspecTest
     config.active_record.raise_in_transactional_callbacks = true
 
     config.generators do |g|
+        g.test_framework :rspec, :fixture => true, :views => false, :fixture_replacement => :factory_girl
+        g.fixture_replacement :factory_girl, :dir => "spec/factories"
         g.controller_specs false
         g.views_specs false
         g.helper_specs false
